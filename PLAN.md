@@ -71,4 +71,12 @@ View in file!
 
 ### Components
 
+Header
+ForumPost
+ -Question
+ -Replylist
+  --ReplyListItem (child of ReplyList)
+ -ReplyForm
+
+
 ### Component Data
