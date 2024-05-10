@@ -17,6 +17,9 @@ const user = {
 ```
 
 ## Users
+What type are you ganna choose? Array? Object? You need to decide. 
+Both work, but...
+Two has pros and cons each.
 
 Array => Easy to show all of them
 Object => Easy to access a specific one
@@ -24,9 +27,13 @@ Object => Easy to access a specific one
 ```jsx
 const users = [user, user];
 [].find();
+//Of course, we can use this [].find() method to access a specific one, 
+//but, that is a loop. So that means you're gonna go over all of your users, every time. 
 const users = { id: user, id: user };
-[id];
+[id]; 
+//This one is more easy, simple and clear to access the user directly. 
 ```
+
 
 ## Question
 
@@ -48,7 +55,7 @@ const question = {
       content: "",
       likes: 0,
     },
-  ],
+  ], //Array of replies! Because we want to see all of the replies at once in list. 
 };
 ```
 
@@ -57,6 +64,8 @@ const question = {
 View in file!
 
 ## Structure
+
+![Screenshot](https://github.com/leslieyjkim/Mug_mingle_2024/blob/main/Wireframe.png?raw=true)
 
 ### HTML
 
