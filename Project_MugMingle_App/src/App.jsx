@@ -1,16 +1,15 @@
+import Header from "./components/Header";
+import Question from "./components/Question";
+
 import './App.css'
+
 
 function App() {
   return (
     <>
-    <header className='Header'>
-      <h1>Mug Mingle</h1>
-    </header>
+    <Header />
+    <Question />
     <main>
-      <section className='Question'>
-        <h1>QUESTION</h1>
-        <h2>BY PROFILE</h2>
-      </section>
       <section className='ReplyList'>
         <h1>X replies to this question</h1>
         <ul>
