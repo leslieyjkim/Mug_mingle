@@ -22,6 +22,7 @@ Both work, but...
 Two has pros and cons each.
 
 Array => Easy to show all of them
+
 Object => Easy to access a specific one
 
 ```jsx
@@ -72,10 +73,16 @@ View in file!
 ### Components
 
 Header
+
 ForumPost
+
  -Question
+
  -Replylist
+
   --ReplyListItem (child of ReplyList)
+
+  
  -ReplyForm
 
 
