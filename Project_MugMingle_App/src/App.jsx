@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import Question from "./components/Question";
 import ReplyList from "./components/ReplyList";
+import ReplyForm from "./components/ReplyForm";
 
 import './App.css'
 
@@ -12,10 +13,7 @@ function App() {
       <main>
         <Question />
         <ReplyList />
-        <form className='ReplyForm'>
-          <input type="text" name="reply" placeholder='Enter your reply' />
-          <button>Add</button>
-        </form>
+        <ReplyForm />
       </main>
     </>
   )
