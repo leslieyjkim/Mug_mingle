@@ -47,13 +47,36 @@ function App() {
      return replies;
   };
 
+
+  const addReply = (replyText) => {
+    const id = post.replies.length+1;
+    const randomId = Math.ceil(Math.random() * 6);
+
+    const newReply = {id, authorId: randomId, likes: 0, content: replyText };
+
+    //post.replies.push(newReply); 
+    //above coding is not correct, it says: Hey post,  I want to add newReply onto your replies. 
+    //At here, the replies updated(changed) newly, but still the post is remaining same. 
+    //So browser not to re-render. 
+    //So! we need to create 'new post'. 
+    //Below coding is updated version.
+
+    const updatedPost = { ...post };
+    //Hey, updatedPost, you know your replies, right? : updatedPost.replies = 
+    //that should be all of the post's replies that I have : [...post.replies]
+    //above line is recreating the new array with the all of replies's object.
+    updatedPost.replies = [ ...post.replies, newReply] //and add up the newReply at the end of the array.
+
+    setPost(updatedPost);
+  };
+
   return (
     <>
       <Header />
       <main>
         <Question { ...getQuestionInformation() }/>  
         <ReplyList replies={getRepliesFromPost()}/>
-        <ReplyForm onSubmit="" /> 
+        <ReplyForm onSubmit={addReply} /> 
       </main>
     </>
   )
