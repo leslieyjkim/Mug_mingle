@@ -13,7 +13,7 @@ function App() {
       <main>
         <Question />
         <ReplyList />
-        <ReplyForm />
+        <ReplyForm onSubmit="" /> 
       </main>
     </>
   )
