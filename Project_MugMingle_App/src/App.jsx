@@ -29,13 +29,14 @@ function App() {
     };
   };
 
-  const questionInfo = getQuestionInformation()  //callback function 
+  // const questionInfo = getQuestionInformation()  //callback function 
+  // getQuestionInformation()  //the function references the object, and I spread this object below, including 'authorName, authorProfile, question' 
 
   return (
     <>
       <Header />
       <main>
-        <Question { ...questionInfo }/>  
+        <Question { ...getQuestionInformation() }/>  
         <ReplyList />
         <ReplyForm onSubmit="" /> 
       </main>
