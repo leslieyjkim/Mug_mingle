@@ -33,7 +33,6 @@ function App() {
   // getQuestionInformation()  //the function references the object, and I spread this object below, including 'authorName, authorProfile, question' 
 
 
-
   const getRepliesFromPost = () => {
     // const replies = post.replies         
     //above line: specify what we want of how we get all of the replies. At here, 1 missing point: for all replies, I want to add more things to the profile. how?
