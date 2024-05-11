@@ -102,3 +102,79 @@ Every time that we say 'Hey I changed something', it's gonna go down and run all
 
 ### Why do we need a 'state'?
 To call the state, we have what we call 'useState' hook. What is the hook is? Hooking to the functionality. Then why do we need to do that? 
+
+
+
+
+
+
+### IMMUTABILITY
+```
+const bob = [1,2,3,['a']]
+const bobby = [...bob]
+
+bob.push(4)
+console.log(bob) //return [1,2,3,['a'],4]
+console.log(bobby) //return [1,2,3,['a']]
+
+
+bob[3].push("b")
+console.log(bob) //return [1,2,3,['a', 'b'],4]
+console.log(bobby) //return [1,2,3,['a', 'b']]   //This is the shocking revelation! You should know the reason. 
+
+
+//Bob is an array [1,2,3]
+//Bobby is [...bob]
+//create an array, then add the values of bob, 1, 2, 3
+
+//Let's see another version which has an array in array.
+//Bob is an array [1,2,3,['a']]
+//Bobby is [...bob]
+//create an array, then add the values of bob, 1, 2, 3, ['a'] 
+//at here, we can store only value, not array['a] (Array and object are reference). Shallow copy = copy just reference. (not full copy)
+```
+
+
+
+.pop() this gonna pop the last value. 
+
+But .pop() is not immutable.
+Because .pop() changes the original value like below;
+
+```
+const bob = [1,2,3,[a,b],4]
+
+bob.pop() returns 4
+bob.pop() returns ['a', 'b']
+bob.pop() returns 3
+bob.pop() returns 2
+bob.pop() returns 1
+bob.pop() returns undefined //nothing to pop anymore.
+```
+
+
+
+.map() is immutable.
+it won't change the original value like below;
+
+```
+const bob = [1,2,3,[a,b]]
+
+bob.map(element => element * 2) returns [2,4,6, NaN]
+bob.map(element => element * 2) returns [2,4,6, NaN]
+bob.map(element => element * 2) returns [2,4,6, NaN]
+bob.map(element => element * 2) returns [2,4,6, NaN]
+bob.map(element => element * 2) returns [2,4,6, NaN]
+//Everytime I try, it shows same result. 
+
+```
+
+[...array] If you use this spread and then modify things, 
+your original structure can keep their original form even after modifying. 
+
+
+###using ChatGPT
+Hey, can you make an example of a javascript data structure representing anime shows from the 90s, nested 4 levels deep with 5 elements? 
+
+then, it will produce the data structure. 
+
