@@ -109,6 +109,10 @@ To call the state, we have what we call 'useState' hook. What is the hook is? Ho
 
 
 ### IMMUTABILITY
+The concept is easy : 
+
+Immutability is "Do a modification on a structure without changing the original structure!"
+
 ```
 const bob = [1,2,3,['a']]
 const bobby = [...bob]
