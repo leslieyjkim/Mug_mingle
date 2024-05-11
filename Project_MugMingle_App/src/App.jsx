@@ -36,12 +36,12 @@ function App() {
   const getRepliesFromPost = () => {
     // const replies = post.replies         
     //above line: specify what we want of how we get all of the replies. At here, 1 missing point: for all replies, I want to add more things to the profile. how?
-    //Need to create new array out of the original one to have more information. At here, the 'map method' comes!
+    //Need to create 'new array' out of the original one to have all the information. At here, the 'map method' comes!
 
     const replies = post.replies.map((reply) => ({ 
       ...reply, 
       authorName: users[reply.authorId].username,
-      authorProfile: users[reply.authorId].profile_url,   //spread reply, and then add 2 informations in object.
+      authorProfile: users[reply.authorId].profile_url,   //spread reply, and then add 2 informations(authorName, authorProfile) in object.
      }));
 
      return replies;
