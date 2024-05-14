@@ -1,3 +1,6 @@
+![Screenshot](https://raw.githubusercontent.com/leslieyjkim/Mug_mingle_2024/f67fd8fa03714ba00a8b6e8c55f67c54eb0496e8/Top.png)
+
+![Screenshot](https://raw.githubusercontent.com/leslieyjkim/Mug_mingle_2024/f67fd8fa03714ba00a8b6e8c55f67c54eb0496e8/Bottom.png)
 October_16_cohorts_W7D3
 
 # W7D3: State Management and Immutable Update Patterns
