@@ -182,3 +182,15 @@ Hey, can you make an example of a javascript data structure representing anime s
 
 then, it will produce the data structure. 
 
+
+
+
+
+
+### Reducer!!!
+In the App.jsx, we can see that we have 4 functions in there. Using React thought, "Shall we have a helper functions separately?"
+
+But, we can't. why? Those 4 functions(getQuestionInformation, getRepliesFromPost, addReply, addQuestionLike) are asking the information about the 'state', or 'changing state'. Which means that they can't live inside the helper functions. What we can do here will be 'Reducer!' : useReducer
+
+The concept of reducer is : you have a function that handles everything that you want to do on your 'state', and then after that you just have your state which means that everything will be hidden behind a function called 'dispatch' instead of having many functions. 
+

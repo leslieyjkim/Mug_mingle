@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 
 import Header from "./components/Header";
 import Question from "./components/Question";
@@ -9,74 +9,49 @@ import { usersObj } from "./data/userData";
 import { forumPost } from "./data/postData"; 
 
 import './App.css'
+import { postReducer } from "./reducers/postReducer";
 
 
 function App() {
-  const [users, serUsers] = useState(usersObj); //create 'state' for each to access those data things.
-  const [post, setPost] = useState(forumPost); //create 'state' for each to access those data things.
+  const initialState = { users:usersObj, post:forumPost }
+  const [state, dispatch] = useReducer(postReducer, initialState);
 
+  const replySubmit = (reply) => dispatch({ type: "ADD_REPLY", payload: { reply } });
+  //Normally we should not use 'dispatch' to 'output content', (it makes infinite loop error)
+  //because we use 'dispatch' to show content to do change. 
+  //So, we can't put below's 2 functions 'getQuestionInformation' & 'getRepliesFromPost' into reducers.
+  //In reducer(postReducer), it should come with switch case with dispatch. 
+  //So! we'll remain these 2 functions here.
+  const getQuestionInformation = () => {
+    const { authorId, question } = state.post;
 
-  const getQuestionInformation = () => {       //create function of 'getQuestionInformation' which returns at the end object containing 'authorName, authorProfile, question'.
-    const {authorId, question} = post          //I'm gonna abstract authorId & question from the postData in data.
-
-    const authorName = users[authorId].name;                 //And if I want to get the 'authorName', this will be 'users' at the position of the authorId(in postData) & and with that authorId, I want to know their name(in userData).
-    const authorProfile = users[authorId].profile_url;
+    const authorName = state.users[authorId].name;
+    const authorProfile = state.users[authorId].profile_url;
 
     return {
-      authorName, 
-      authorProfile, 
+      authorName,
+      authorProfile,
       question,
     };
   };
 
-  // const questionInfo = getQuestionInformation()  //callback function 
-  // getQuestionInformation()  //the function references the object, and I spread this object below, including 'authorName, authorProfile, question' 
-
-
   const getRepliesFromPost = () => {
-    // const replies = post.replies         
-    //above line: specify what we want of how we get all of the replies. At here, 1 missing point: for all replies, I want to add more things to the profile. how?
-    //Need to create 'new array' out of the original one to have all the information. At here, the 'map method' comes!
+    const replies = state.post.replies.map((reply) => ({
+      ...reply,
+      authorName: state.users[reply.authorId].username,
+      authorProfile: state.users[reply.authorId].profile_url,
+    }));
 
-    const replies = post.replies.map((reply) => ({ 
-      ...reply, 
-      authorName: users[reply.authorId].username,
-      authorProfile: users[reply.authorId].profile_url,   //spread reply, and then add 2 informations(authorName, authorProfile) in object.
-     }));
-
-     return replies;
+    return replies;
   };
-
-
-  const addReply = (replyText) => {
-    const id = post.replies.length+1;
-    const randomId = Math.ceil(Math.random() * 6);
-
-    const newReply = {id, authorId: randomId, likes: 0, content: replyText };
-
-    //post.replies.push(newReply); 
-    //above coding is not correct, it says: Hey post,  I want to add newReply onto your replies. 
-    //At here, the replies updated(changed) newly, but still the post is remaining same. 
-    //So browser not to re-render. 
-    //So! we need to create 'new post'. 
-    //Below coding is updated version.
-
-    const updatedPost = { ...post };
-    //Hey, updatedPost, you know your replies, right? : updatedPost.replies = 
-    //that should be all of the post's replies that I have : [...post.replies]
-    //above line is recreating the new array with the all of replies's object.
-    updatedPost.replies = [ ...post.replies, newReply] //and add up the newReply at the end of the array.
-
-    setPost(updatedPost);
-  };
-
+  
   return (
     <>
       <Header />
       <main>
-        <Question { ...getQuestionInformation() }/>  
+        <Question {...getQuestionInformation()} />  
         <ReplyList replies={getRepliesFromPost()}/>
-        <ReplyForm onSubmit={addReply} /> 
+        <ReplyForm onSubmit={replySubmit} /> 
       </main>
     </>
   )
