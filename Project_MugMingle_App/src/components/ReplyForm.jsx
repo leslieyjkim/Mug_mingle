@@ -21,6 +21,8 @@ export default function ReplyForm(props) {
         event.preventDefault() //Hey, form! don't do the default re-freshing. 
          
         props.onSubmit(reply) //Hey,What I'm gonna submit you, what I want you to do is 'take reply & give it to somebody'.
+        
+        setReply('');
     }
 
     console.log("State value", reply); //Input창에 내가 입력한 값이 찍힘. Wiggle을 입력하면, W, Wi, Wig, Wigg, Wiggl, Wiggle 순으로 6차례 찍혀.

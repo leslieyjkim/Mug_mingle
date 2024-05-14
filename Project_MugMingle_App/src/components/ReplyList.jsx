@@ -11,7 +11,7 @@ export default function ReplyList(props) {
 
     return (
         <section className='ReplyList'>
-            <h1>X replies to this question</h1>
+            <h1>Replies to this question</h1>
             <ul>{ parsedReplies }</ul>
         </section>
     )
